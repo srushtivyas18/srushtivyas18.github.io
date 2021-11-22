@@ -1,13 +1,16 @@
 // State variables 
-// aLooking at how to stae variables for 4 differnt things
+// Looking at how to state variables for 4 differnt things
 // Srushti Vyas
 // November 18,2021
 
 let topLeft, topRight, bottomLeft, bottomRight;
-//let topLeft = 0;
-//let topRight = 0;
-//let bottomLeft = 0;
-//let bottomRight = 0;
+let tLeftFade = 0;
+let tRightFade = 0;
+let bLeftFade = 0;
+let bRightFade = 0;
+const FADE_SPEED = 4;
+let ttRight1, ttRight2, ttRight3 = 0;
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -32,39 +35,48 @@ function draw() {
 
 function drawRectangles(){
   if(topRight){
-    fill(0);
+    fill(ttRight1,ttRight2,ttRight3,tRightFade);
+    tRightFade += FADE_SPEED;
     
     
   }
   else{
     fill(255);
+    tRightFade = 0;
   }
   
   rect(width/2,0,width/2,height/2);
   
   if(topLeft){
-    fill(0);
+    fill(107,232,192,tLeftFade);
+    tLeftFade += FADE_SPEED;
   }
   else{
     fill(255);
+    tLeftFade = 0;
   }
   
   rect(0,0,width/2,height/2);
   
   if(bottomRight){
-    fill(0);
+    fill(153,69,217,bRightFade);
+    bRightFade += FADE_SPEED;
   }
   else{
     fill(255);
+    bRightFade = 0;
+
   }
   
   rect(width/2,height/2,width/2,height/2);
   
   if(bottomLeft){
-    fill(0);
+    fill(224,79,171,bLeftFade);
+    bLeftFade += FADE_SPEED;
   }
   else{
     fill(255);
+    bLeftFade = 0;
   }
   
   rect(0,height/2,width/2,height/2);
@@ -113,4 +125,19 @@ function mouseValue(){
  
   
   
+}
+
+function mouseClicked(){
+  if(ttRight1 === 219){
+      ttRight1 = 0;
+      ttRight2 = 0;
+      ttRight3 = 0;
+  }
+  else{
+    ttRight1 = 219;
+    ttRight2 = 90;
+    ttRight3 = 81;
+    
+    
+  }
 }
