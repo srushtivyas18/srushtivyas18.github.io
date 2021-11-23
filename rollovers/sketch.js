@@ -50,10 +50,11 @@ function drawRectangles(){
   if(topLeft){
     fill(107,232,192,tLeftFade);
     tLeftFade += FADE_SPEED;
+
   }
   else{
     fill(255);
-    tLeftFade = 0;
+   tLeftFade -= FADE_SPEED;
   }
   
   rect(0,0,width/2,height/2);

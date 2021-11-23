@@ -160,3 +160,6 @@ function mouseClicked() {
     landd3 = 55;
   }
 }
+
+//when i staeted the project i didn't know that i had to use 
+//the window length and height, so i used the no. at the first
