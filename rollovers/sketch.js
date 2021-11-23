@@ -9,7 +9,7 @@ let tRightFade = 0;
 let bLeftFade = 0;
 let bRightFade = 0;
 const FADE_SPEED = 4;
-let ttRight1, ttRight2, ttRight3 = 0;
+//let ttRight1, ttRight2, ttRight3 = 0;
 
 
 function setup() {
@@ -35,7 +35,7 @@ function draw() {
 
 function drawRectangles(){
   if(topRight){
-    fill(ttRight1,ttRight2,ttRight3,tRightFade);
+    fill(63, 79, 224,tRightFade);
     tRightFade += FADE_SPEED;
     
     
@@ -54,7 +54,7 @@ function drawRectangles(){
   }
   else{
     fill(255);
-   tLeftFade -= FADE_SPEED;
+   tLeftFade = 0;
   }
   
   rect(0,0,width/2,height/2);
@@ -128,17 +128,17 @@ function mouseValue(){
   
 }
 
-function mouseClicked(){
-  if(ttRight1 === 219){
-      ttRight1 = 0;
-      ttRight2 = 0;
-      ttRight3 = 0;
-  }
-  else{
-    ttRight1 = 219;
-    ttRight2 = 90;
-    ttRight3 = 81;
+// function mouseClicked(){
+//   if(ttRight1 === 219){
+//       ttRight1 = 0;
+//       ttRight2 = 0;
+//       ttRight3 = 0;
+//   }
+//   else{
+//     ttRight1 = 219;
+//     ttRight2 = 90;
+//     ttRight3 = 81;
     
     
-  }
-}
+//   }
+//}
