@@ -39,7 +39,7 @@ function draw() {
 
 function drawRectangles(){
   if(topRight){
-    fill(fillValue = 63, 79, 224,tRightFade,);
+    fill(fillValue = 63, 79, 224,tRightFade);
     tRightFade += FADE_SPEED;
     
     
@@ -54,7 +54,7 @@ function drawRectangles(){
   rect(width/2,0,width/2,height/2);
   
   if(topLeft){
-    fill(fillValue1 = 0,tLeftFade);
+    fill(fillValue1 = 127, 222, 44,tLeftFade);
     tLeftFade += FADE_SPEED;
 
   }
@@ -134,9 +134,8 @@ function mouseValue(){
    bottomRight = false;
   }
  
-  
-  
 }
+
 
 // function mouseClicked(){
 //   if(ttRight1 === 219){
