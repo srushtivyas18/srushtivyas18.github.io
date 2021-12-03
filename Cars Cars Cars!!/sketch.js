@@ -18,10 +18,12 @@ function drawRoad(){
 
   fill(0);
   rect(0,height/4,width,height/2);
+
   for(let i = 0; i < width; i++){
     fill(255);
-    rect(0,height/2.1,i,height/100);
+    rect(i*(width+250)/16,height/2.1,width/16,height/100);
+    //rect(width/16+5,height/2.1,width/16,height/100);
+    //delay(1000);
   }
-  
 
 }
