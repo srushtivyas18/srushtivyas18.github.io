@@ -4,6 +4,7 @@
 // Making a car simulation
 
 let eastBound = [];
+let westBound = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -12,10 +13,14 @@ function setup() {
 function draw() {
   background(220);
   drawRoad();
+  for(let i = 0; i < eastBound.length; i++){
+    eastBound[i].action();
+  }
 }
 
 function mouseClicked(){
-  eastbound.pus(new Vehicle)
+  eastBound.push(new Vehicle(mouseX,mouseY,1));
+
 }
 
 function drawRoad(){
@@ -55,13 +60,20 @@ class Vehicle{
   }
 
   drawCar(){
+    fill(200);
+    rect(this.x+10, this.y-25, 20, 10, 5);
+    rect(this.x-30, this.y-25, 20, 10, 5);
+    rect(this.x+10, this.y+15, 20, 10, 5);
+    rect(this.x-30, this.y+15, 20, 10, 5);
     fill(this.c);
-    rect(this.x, this.y, 100, 40);
+    ellipse(this.x,this.y,100,40);
+    
   }
 
   drawTruck(){
     fill(this.c);
-    ellipse(this.x,this.y,100,40);
+    rect(this.x+90,this.y+5,30,30);
+    rect(this.x, this.y, 100,40,10);
   }
 
   speedUp(){
