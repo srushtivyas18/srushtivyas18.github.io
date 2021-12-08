@@ -14,8 +14,10 @@ function draw() {
   background(220);
   drawRoad();
   for(let i = 0; i < eastBound.length; i++){
+    eastBound[i].move();
     eastBound[i].action();
   }
+ 
 }
 
 function mouseClicked(){
@@ -26,6 +28,8 @@ function mouseClicked(){
 function drawRoad(){
 
   fill(0);
+  rect(0,height/4.5,width,height/4);
+  rect(0,height/2.04, width, height/3.85)
   rect(0,height/4,width,height/2);
 
   for(let i = 0; i < width; i++){
@@ -42,13 +46,13 @@ class Vehicle{
     this.dir = dir;
     this.c = color(random(255),random(255),random(255));
     this.type = int(random(2));
+    this.xSpeed =4 
+    this.ySpeed =0
 
   }
 
 
-  move(){
-    
-  }
+ 
 
   display(){
     if(this.type === 0){// car
@@ -57,6 +61,12 @@ class Vehicle{
     else if (this.type === 1){//truck
       this.drawTruck();
     }
+  }
+
+  move(){
+    this.x += this.xSpeed;
+    this.y += this.ySpeed;
+    
   }
 
   drawCar(){
@@ -77,7 +87,7 @@ class Vehicle{
   }
 
   speedUp(){
-
+    
   }
   speedDown(){
 
