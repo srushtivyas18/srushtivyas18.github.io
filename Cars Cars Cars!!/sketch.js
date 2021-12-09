@@ -46,8 +46,8 @@ class Vehicle{
     this.dir = dir;
     this.c = color(random(255),random(255),random(255));
     this.type = int(random(2));
-    this.xSpeed =4 
-    this.ySpeed =0
+    this.xSpeed =4; 
+    this.ySpeed =0;
 
   }
 
