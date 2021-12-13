@@ -1,25 +1,41 @@
 // Terrain Project
 
-let rectWidth = 3;  //width of each rectangle slice
+let rectWidth = 1;  //width of each rectangle slice
+ var xOff = 0;
+
+var mov = 0.01;
+var start = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   rectMode(CORNERS);
-  background(220);
+  background(210);
+  
+}
+function draw() {
+
   regularrandomTerrain();
 }
 
-function draw() {
 
-}
 
 function regularrandomTerrain(){
   // create some random terrain using random()
+  fill(0);
+  noStroke();
+  xOff = start;
   for(let x = 0; x < width; x+= rectWidth){
 
-    let sectionHeight = random(0,height);
+    let sectionHeight = map(noise(xOff),0,1,0,width);
+    
+    xOff += mov;
+    
 rect(x,height, x+rectWidth, height - sectionHeight);
 
   }
   
+  start += mov;
+
+
+
 }
