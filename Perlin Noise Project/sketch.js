@@ -1,9 +1,9 @@
 // Terrain Project
 
-let rectWidth = 1;  //width of each rectangle slice
+let rectWidth = 0.5;  //width of each rectangle slice
  var xOff = 0;
 
-var mov = 0.01;
+var mov = 0.001;
 var start = 0;
 
 function setup() {
