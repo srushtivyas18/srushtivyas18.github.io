@@ -3,6 +3,11 @@
 
 let objects = [];
 
+
+function preload(){
+  
+}
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   //add points (parent object)
@@ -11,15 +16,15 @@ function setup() {
 
   }
 
-  // add circles (child objects)
-  for(let i = 0; i < 10; i++){
-    objects.push(new CircleObj(random(width), random(height),random(20,40)));
-  }
+  // // add circles (child objects)
+  // for(let i = 0; i < 10; i++){
+  //   objects.push(new CircleObj(random(width), random(height),random(20,40)));
+  // }
 
-   // add lines (child objects)
-   for(let i = 0; i < 10; i++){
-    objects.push(new LineObj());
-  }
+  //  // add lines (child objects)
+  //  for(let i = 0; i < 10; i++){
+  //   objects.push(new LineObj());
+  // }
 }
 
 function draw() {
@@ -31,23 +36,42 @@ function draw() {
 }
 
 
-
+// parent class -fish object
 class AnimatedObject{
   constructor(x,y){
     this.x = x;
     this.y = y;
     this.size = 1;
+    this.fishImages =[];
+    this.loadCounter = 0;
+    this.loadingComplete = false;
+    this.fishImages.push(loadImage("assets/fishL.png", this.loadedImage()));  // not to do
+    this.fishImages.push(loadImage("assets/fishR.png", this.loadedImage()));
 
   }
+
+  loadedImage(){
+    this.loadCounter ++;
+    if(this.loadCounter === 2){
+      this.loadingComplete = true;
+    }
+  }
   move(){
-  this.x += (random(-2,2), random(-2,2))
+    if(this.loadingComplete){
+      this.x += (random(-2,2), random(-2,2))
+    }
+ 
 
 
   }
 
   display(){
-    strokeWeight(4);
-    point(this.x, this.y);
+    // strokeWeight(4);
+    // point(this.x, this.y);
+    if(this.loadingComplete){
+      image(this.fishImages[0], this.x, this.y,100,100)
+    }
+  
   }
 }
 
