@@ -16,54 +16,54 @@ function draw() {
   myWind.runWind();
 }
 
-class WindZone{
+class WindZone {
 
-  
+
   //constructor
-  constructor(startX, endX, f){ // f → force vector
+  constructor(startX, endX, f) { // f → force vector
     this.startX = startX;
     this.endX = endX;
     this.force = f;
     this.windLines = [];
     this.NUM_LINES = 100;
     this.initWind();
-  
+
   }
 
-  initWind(){ // create a bunch of windlines object
-    for(let i = 0; i < this.NUM_LINES; i++){
+  initWind() { // create a bunch of windlines object
+    for (let i = 0; i < this.NUM_LINES; i++) {
       this.windLines.push(new WindLine(random(this.startX, this.endX)));
     }
   }
 
-  runWind(){
-    for(let w of this.windLines){
+  runWind() {
+    for (let w of this.windLines) {
       w.move();
       w.display();
-      
+
     }
   }
 }
 
 
-class WindLine{
+class WindLine {
   //lines used to illustrate areas where a find force is 
-  constructor(x){
+  constructor(x) {
     this.pos = createVector(x, random(height));
     this.vel = createVector(0, random(-2, -0.5));
-    this.len = random(4,15);
+    this.len = random(4, 15);
   }
 
   //class methods
-  move(){
+  move() {
     this.pos.add(this.vel);
-    if((this.pos.y) < 0){
+    if ((this.pos.y) < 0) {
       // gone off top of screen, time to wrap around
       this.pos.y = height;
     }
   }
 
-  display(){
+  display() {
     line(this.pos.x, this.pos.y, this.pos.x, this.pos.y - this.len);
   }
 
