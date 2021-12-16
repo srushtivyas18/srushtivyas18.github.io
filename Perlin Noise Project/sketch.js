@@ -8,7 +8,7 @@
 let rectWidth = 1;  //width of each rectangle slice
 let xOff = 0;
 
-let mov = 0.004;    // mov is working as the speed of my terrain
+let mov = 0.004;    // mov is working as the speed of my terrain also this value allows the terrain to be in good size unless it would make it steeper if the value would be bigger
 let start = 0;
 let heightX, heightY; // This works as some values for making mountain top flag
 let averageHeight;  // It will be an array for the average 
