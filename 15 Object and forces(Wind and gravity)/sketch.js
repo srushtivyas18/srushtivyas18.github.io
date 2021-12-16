@@ -11,15 +11,15 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   let = windForce = createVector(0, -0.1);
   myWind = new WindZone(width * 0.3, width * 0.5, windForce);
-  grav = createVector(0,0.06);
+  grav = createVector(0, 0.06);
 }
 
 function draw() {
   background(220);
   myWind.runWind();
-  for(let p of particles){
+  for (let p of particles) {
     p.applyForce(grav);
-    if(p.isInsideWind(myWind)){
+    if (p.isInsideWind(myWind)) {
       p.applyForce(myWind.force);
     }
     p.move();
@@ -27,7 +27,7 @@ function draw() {
   }
 }
 
-function mousePressed(){
+function mousePressed() {
   particles.push(new Particle(mouseX, mouseY));
 }
 
@@ -84,36 +84,36 @@ class WindLine {
 
 }
 
-class Particle{
+class Particle {
   //constructor
-  constructor(x,y){
-    this.pos = createVector(x,y);
-    this.vel = createVector(random(3,5), 0);
-    this.accel = createVector(0,0);
+  constructor(x, y) {
+    this.pos = createVector(x, y);
+    this.vel = createVector(random(3, 5), 0);
+    this.accel = createVector(0, 0);
   }
 
   //class methods
-  applyForce(f){
+  applyForce(f) {
     //f → vector of a force to be applied on the current frame
     this.accel.add(f);
   }
 
-  move(){
+  move() {
     this.vel.add(this.accel);
     this.pos.add(this.vel);
     this.accel.mult(0);  // accel.x *= 0   accel.y *= 0
   }
 
-  display(){
-    circle(this.pos.x, this.pos.y,30);
+  display() {
+    circle(this.pos.x, this.pos.y, 30);
   }
 
-  isInsideWind(w){
+  isInsideWind(w) {
     // w → windZone object
-    if(this.pos.x > w.startX && this.pos.x < w.endX){
+    if (this.pos.x > w.startX && this.pos.x < w.endX) {
       return true;
     }
-    else{
+    else {
       return false;
     }
   }
