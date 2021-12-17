@@ -18,18 +18,16 @@ function draw() {
     eastBound[i].move();
     eastBound[i].action();
   }
-
+  //carMoving();
 }
 
 function mouseClicked() {
 
   if (keyIsPressed && keyCode === SHIFT) {
     eastBound.push(new Vehicle(mouseX, mouseY, 1));
+    print(eastBound);
   }
 }
-
-
-
 
 function drawRoad() {
 
@@ -43,6 +41,15 @@ function drawRoad() {
     rect(i * (width + 250) / 16, height / 2.1, width / 16, height / 100);
   }
 }
+
+
+//  function carMoving(){
+//   // for(let a = 0; a < a.length; a++){
+//   //   eastBound.push(new Vehicle(mouseX,mouseY,1));
+//   // }
+//  eastBound.push(new Vehicle(mouseX,mouseY,1));
+//  }
+
 
 class Vehicle {
   constructor(x, y, dir) {
@@ -66,8 +73,9 @@ class Vehicle {
 
   move() {
     this.x += this.xSpeed;
-    
   }
+
+  
 
   drawCar() {
     fill(200);
