@@ -5,7 +5,7 @@
 
 let eastBound = [];
 let westBound = [];
-let wLane, eLane;
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -15,17 +15,21 @@ function draw() {
   background(220);
   drawRoad();
   for (let i = 0; i < eastBound.length; i++) {
-    eastBound[i].move();
     eastBound[i].action();
   }
-  //carMoving();
+  for(let j = 0; j < westBound.length; j++){
+    westBound[j].action();
+  }
+
 }
 
 function mouseClicked() {
 
   if (keyIsPressed && keyCode === SHIFT) {
-    eastBound.push(new Vehicle(mouseX, mouseY, 1));
-    print(eastBound);
+    eastBound.push(new Vehicle(0,random(550,700), 0));
+  }
+  else{
+    westBound.push(new Vehicle(width, random(250,400), 1));
   }
 }
 
@@ -42,20 +46,11 @@ function drawRoad() {
   }
 }
 
-
-//  function carMoving(){
-//   // for(let a = 0; a < a.length; a++){
-//   //   eastBound.push(new Vehicle(mouseX,mouseY,1));
-//   // }
-//  eastBound.push(new Vehicle(mouseX,mouseY,1));
-//  }
-
-
 class Vehicle {
   constructor(x, y, dir) {
     this.x = x;
     this.y = y;
-    this.dir = dir;
+    this.dir = dir;   //0→west   1→east
     this.c = color(random(255), random(255), random(255));
     this.type = int(random(2));
     this.xSpeed = random(1, 10);
@@ -72,7 +67,12 @@ class Vehicle {
   }
 
   move() {
-    this.x += this.xSpeed;
+    if(this.dir === 0){
+      this.x += this.xSpeed
+    }
+    if(this.dir === 1){
+      this.x -= this.xSpeed
+    }
   }
 
   
@@ -105,5 +105,6 @@ class Vehicle {
   }
   action() {
     this.display();
+    this.move();
   }
 }
