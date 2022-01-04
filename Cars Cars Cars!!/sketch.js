@@ -21,6 +21,8 @@ function draw() {
     westBound[j].action();
   }
 
+  drawTrafficlight();
+
 }
 
 function mouseClicked() {
@@ -107,4 +109,14 @@ class Vehicle {
     this.display();
     this.move();
   }
+}
+
+
+function drawTrafficlight(){
+  fill(255);
+  rect(width / 2, height / 2, 80, 160);
+  fill(255);
+  ellipse(width / 2, height / 2 - 50, 40, 40)
+  ellipse(width / 2, height / 2, 40)
+  ellipse(width / 2, height / 2 + 50, 40, 40)
 }
