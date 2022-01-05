@@ -5,10 +5,12 @@
 
 let eastBound = [];
 let westBound = [];
+const CAR_NUMS = 20;
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  eastBound
 }
 
 function draw() {
@@ -20,8 +22,6 @@ function draw() {
   for(let j = 0; j < westBound.length; j++){
     westBound[j].action();
   }
-
-  drawTrafficlight();
 
 }
 
@@ -111,12 +111,10 @@ class Vehicle {
   }
 }
 
-
-function drawTrafficlight(){
-  fill(255);
-  rect(width / 2, height / 2, 80, 160);
-  fill(255);
-  ellipse(width / 2, height / 2 - 50, 40, 40)
-  ellipse(width / 2, height / 2, 40)
-  ellipse(width / 2, height / 2 + 50, 40, 40)
+class TrafficLight{
+  constructor(x,y,z){
+    
+  }
 }
+
+
