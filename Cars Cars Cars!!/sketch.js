@@ -5,12 +5,17 @@
 
 let eastBound = [];
 let westBound = [];
-const CAR_NUMS = 20;
+const CAR_NUMS = 10;
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  eastBound
+  for(let i = 0; i < CAR_NUMS; i++){
+    eastBound.push(new Vehicle(random(width),random(550,650), 0));
+  }
+  for(let j = 0; j < CAR_NUMS; j++){
+    westBound.push(new Vehicle(random(width), random(250,400), 1));
+  }
 }
 
 function draw() {
@@ -28,7 +33,7 @@ function draw() {
 function mouseClicked() {
 
   if (keyIsPressed && keyCode === SHIFT) {
-    eastBound.push(new Vehicle(0,random(550,700), 0));
+    eastBound.push(new Vehicle(0,random(550,650), 0));
   }
   else{
     westBound.push(new Vehicle(width, random(250,400), 1));
@@ -55,7 +60,7 @@ class Vehicle {
     this.dir = dir;   //0→west   1→east
     this.c = color(random(255), random(255), random(255));
     this.type = int(random(2));
-    this.xSpeed = random(1, 10);
+    this.xSpeed = random(5, 10);
 
   }
 
@@ -70,10 +75,16 @@ class Vehicle {
 
   move() {
     if(this.dir === 0){
-      this.x += this.xSpeed
+      this.x += this.xSpeed;
+      if(this.x > width){
+        this.x = 0;
+      }
     }
     if(this.dir === 1){
-      this.x -= this.xSpeed
+      this.x -= this.xSpeed;
+      if(this.x < 0){
+        this.x = width;
+      }
     }
   }
 
@@ -97,24 +108,41 @@ class Vehicle {
   }
 
   speedUp() {
+    if(random(100) <= 1){
+      this.xSpeed += 2;
+      if(this.xSpeed >= 15){
+        this.xSpeed = 15;
+      }
+    }
 
   }
   speedDown() {
+    if(random(100) <= 1){
+      this.xSpeed -= 2;
+      if(this.xSpeed <= 0){
+        this.xSpeed = 0;
+      }
+    }
 
   }
   changeColor() {
-
+    if(random(100) <= 1){
+      this.c = color(random(255), random(255), random(255));
+    }
   }
   action() {
     this.display();
+    this.speedUp();
+    this.speedDown;
+    this.changeColor();
     this.move();
   }
 }
 
-class TrafficLight{
-  constructor(x,y,z){
+// class TrafficLight{
+//   constructor(x,y,z){
     
-  }
-}
+//   }
+// }
 
 
