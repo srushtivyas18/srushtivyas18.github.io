@@ -44,6 +44,8 @@ class AnimatedObject {
     this.xSpeed;
     this.ySpeed;
     this.vel;
+    this.fishImages = [];
+    this.fishImages.push(move("assets/fish2.png", this.move()));
 
     /** Size parameter inherited by subclass */
     this.size = 50;
@@ -53,7 +55,9 @@ class AnimatedObject {
   display() { }
 
   /** Advances the object's animation by one frame  */
-  move() { }
+  move() { 
+    image(this.fishImages[0], this.x, this.y,100,100)
+  }
 
   /** Optional Function:
    *  Parameter will store the array of all fish objects, which can be used

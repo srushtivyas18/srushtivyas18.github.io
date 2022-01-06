@@ -1,20 +1,20 @@
 // Cars Cars Cars!!!
 // Srushti Vyas
 // Dec 3rd, 2021
-// Making a car simulation
+// Making a car simulation by adding one expert challenge
 
-let eastBound = [];
+let eastBound = [];     // east and west bound for the cars to mave them in two different direction
 let westBound = [];
-const CAR_NUMS = 10;
+const CAR_NUMS = 10;    // i made number of cars to 10 'case when i change to 20 it was getting a bit messy
 
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   for(let i = 0; i < CAR_NUMS; i++){
-    eastBound.push(new Vehicle(random(width),random(550,650), 0));
+    eastBound.push(new Vehicle(random(width),random(550,650), 0));  // This for loops will maintain the number of cars which are getting on screen
   }
   for(let j = 0; j < CAR_NUMS; j++){
-    westBound.push(new Vehicle(random(width), random(250,400), 1));
+    westBound.push(new Vehicle(random(width), random(270,400), 1)); // and also the 
   }
 }
 
@@ -36,20 +36,18 @@ function mouseClicked() {
     eastBound.push(new Vehicle(0,random(550,650), 0));
   }
   else{
-    westBound.push(new Vehicle(width, random(250,400), 1));
+    westBound.push(new Vehicle(width, random(270,400), 1));
   }
 }
 
 function drawRoad() {
 
   fill(0);
-  wLane = rect(0, height / 4.5, width, height / 4);
-  eLane = rect(0, height / 2.04, width, height / 3.85)
   rect(0, height / 4, width, height / 2);
 
   for (let i = 0; i < width; i++) {
     fill(255);
-    rect(i * (width + 250) / 16, height / 2.1, width / 16, height / 100);
+    rect(i * (width + 250) / 16, height / 2, width / 16, height / 100);
   }
 }
 
