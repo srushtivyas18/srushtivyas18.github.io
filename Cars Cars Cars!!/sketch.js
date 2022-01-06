@@ -111,10 +111,9 @@ class Vehicle {
     if(random(100) <= 1){
       this.xSpeed += 2;
       if(this.xSpeed >= 15){
-        this.xSpeed = 15;
+        this.xSpeed = 0;
       }
     }
-
   }
   speedDown() {
     if(random(100) <= 1){
