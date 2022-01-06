@@ -56,7 +56,7 @@ class AnimatedObject {
 
   /** Advances the object's animation by one frame  */
   move() { 
-    image(this.fishImages[0], this.x, this.y,100,100)
+    image(this.fishImages[0], this.x, this.y,100,100) 
   }
 
   /** Optional Function:
@@ -75,4 +75,11 @@ class AnimatedObject {
   getSize() { return this.size; }
   getxSpeed() { return this.xSpeed; }
   getySpeed() { return this.ySpeed; }
+}
+
+class VyasSFish extends AnimatedObject{
+  constructor(x,y,c){
+
+  }
+
 }
