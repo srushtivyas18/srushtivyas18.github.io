@@ -44,8 +44,6 @@ class AnimatedObject {
     this.xSpeed;
     this.ySpeed;
     this.vel;
-    this.fishImages = [];
-    this.fishImages.push(move("assets/fish2.png", this.move()));
 
     /** Size parameter inherited by subclass */
     this.size = 50;
@@ -55,8 +53,8 @@ class AnimatedObject {
   display() { }
 
   /** Advances the object's animation by one frame  */
-  move() { 
-    image(this.fishImages[0], this.x, this.y,100,100) 
+  move() {
+    image(this.fishImages[0], this.x, this.y, 100, 100)
   }
 
   /** Optional Function:
@@ -77,8 +75,8 @@ class AnimatedObject {
   getySpeed() { return this.ySpeed; }
 }
 
-class VyasSFish extends AnimatedObject{
-  constructor(x,y,c){
+class VyasSFish extends AnimatedObject {
+  constructor(x, y, c) {
 
   }
 

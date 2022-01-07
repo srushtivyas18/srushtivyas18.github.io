@@ -1,7 +1,7 @@
 // flocking simulation
 // for aquarium project
 
-const flock =[];
+const flock = [];
 
 let allignSlider, cohesionSlider, seperationSlider;
 function setup() {
