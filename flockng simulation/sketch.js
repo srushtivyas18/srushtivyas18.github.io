@@ -6,9 +6,9 @@ const flock =[];
 let allignSlider, cohesionSlider, seperationSlider;
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  allignSlider = createSlider(0.5, 1, 0.1);
-  cohesionSlider = createSlider(0.5, 1, 0.1);
-  seperationSlider = createSlider(0.5, 1, 0.1);
+  allignSlider = createSlider(0,5, 1, 0.1);
+  cohesionSlider = createSlider(0,5, 1, 0.1);
+  seperationSlider = createSlider(0,5, 1, 0.1);
   for(let i = 0; i < 100; i++){
     flock.push(new Boid());
   }
