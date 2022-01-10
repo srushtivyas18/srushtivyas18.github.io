@@ -5,7 +5,8 @@
 
 let markers = [];
 let currentlyDragging = false;  // global variable flag for if we are currently moving something
-let gridSize = 30;
+let gridSize = 10;
+let activeRender = true;
 
 function setup() {
   createCanvas(800, 600);
@@ -22,13 +23,21 @@ function draw() {
 
 function drawVoronoi(){
   // render the voronoi diagram based on the objects stored in markers
+  for(let m of markers){
+    m.resetCount();
+  }
 
+
+  if(activeRender){
+    noStroke();
     for(let x = 0; x < width; x+= gridSize){
       for(let y = 0; y < height; y+= gridSize){
         setFill(x,y);
         square(x,y,gridSize);
       }
     }
+  }
+    
 
 }
 
@@ -41,11 +50,13 @@ function setFill(x,y){
     let currentDist = dist(x,y,markers[i].x, markers[i].y);
     if(currentDist < minDist || minDist === -1){
       minDist = currentDist;
-      minIndex = 1;
+      minIndex = i;
     }
   }
   if(minIndex !== -1){ // indicates there is at least one marker
+
     fill(markers[minIndex].regionColor);
+    markers[minIndex].regionAdd();
   }
   else{
     fill(200);
@@ -56,6 +67,9 @@ function keyPressed(){
   if(key===" "){
     markers.push(new MovableMarker(mouseX, mouseY));
     
+  }
+  if(keyCode === 16){
+    activeRender = !activeRender;
   }
 }
 
@@ -68,9 +82,9 @@ class MovableMarker{
     this.offX = 0;
     this.offY = 0;    //used for when dragging not from the center
     this.baseColor = color(255,0,0);
-    this.hoverColor = color(200,0,0,);
+    this.hoverColor = color(200,0,0);
     this.beingDragged = false;
-    this.radius = 20;
+    this.radius = 7;
     this.diameter = this.radius * 2;
     this.regionColor = color(random(255),random(255),random(255),150);
     this.regionArea = 0;
@@ -99,6 +113,7 @@ class MovableMarker{
   }
 
   display(){
+    stroke(0);
     if(this.mouseIsOver()){
       fill(this.hoverColor);
     }
@@ -107,6 +122,8 @@ class MovableMarker{
     }
 
     circle(this.x,this.y,this.diameter);
+    fill(0);
+    text(round(this.regionArea / ( width/gridSize * height/ gridSize) * 100), this.x, this.y + 20);
 
   }
 
@@ -127,7 +144,7 @@ class MovableMarker{
   }
 
   resetCount(){
-    this.regionArea=0;
+    this.regionArea = 0;
   }
 
 }
