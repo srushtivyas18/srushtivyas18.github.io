@@ -5,21 +5,30 @@
 
 let markers = [];
 let currentlyDragging = false;  // global variable flag for if we are currently moving something
-let gridSize = 10;
+let gridSize = 5;
 let activeRender = true;
+let map;
+
+function preload(){
+  map = loadImage("assets/SaskatoonSection.png");
+}
 
 function setup() {
   createCanvas(800, 600);
+  map.loadPixels();
 }
 
 function draw() {
   background(220);
+  image(map,0,0,800,600);
   drawVoronoi();
   for(let m of markers){
     m.move();
     m.display();
   }
 }
+
+
 
 function drawVoronoi(){
   // render the voronoi diagram based on the objects stored in markers
@@ -63,6 +72,22 @@ function setFill(x,y){
   }
 }
 
+function star(x, y, radius1, radius2, npoints) {
+  let angle = TWO_PI / npoints;
+  let halfAngle = angle / 2.0;
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += angle) {
+    let sx = x + cos(a) * radius2;
+    let sy = y + sin(a) * radius2;
+    vertex(sx, sy);
+    sx = x + cos(a + halfAngle) * radius1;
+    sy = y + sin(a + halfAngle) * radius1;
+    vertex(sx, sy);
+  }
+  endShape(CLOSE);
+}
+
+
 function keyPressed(){
   if(key===" "){
     markers.push(new MovableMarker(mouseX, mouseY));
@@ -70,6 +95,10 @@ function keyPressed(){
   }
   if(keyCode === 16){
     activeRender = !activeRender;
+  }
+
+  if(keyCode === 66){ //B key 
+    markers.push(new StarMaker(mouseX, mouseY));
   }
 }
 
@@ -147,4 +176,38 @@ class MovableMarker{
     this.regionArea = 0;
   }
 
+}
+
+
+class StarMaker extends MovableMarker{
+  constructor(x,y){
+    super(x,y)
+  }
+  move(){
+    super.move()
+  }
+  display(){
+    stroke(0);
+    if(this.mouseIsOver()){
+      fill(this.hoverColor);
+    }
+    else{  //no hover
+      fill(this.baseColor);
+    }
+    star(this.x,this.y,10,25,5);
+    fill(0);
+    text(round(this.regionArea / ( width/gridSize * height/ gridSize) * 100), this.x, this.y + 20);
+  }
+
+  mouseIsOver(){
+    super.mouseIsOver();
+  }
+
+  regionAdd(){
+    super.regionAdd();
+  }
+
+  regionCount(){
+    super.regionCount();
+  }
 }
