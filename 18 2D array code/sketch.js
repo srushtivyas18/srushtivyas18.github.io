@@ -25,15 +25,21 @@ function getCurrentY(){
   return int(mouseY/rectHeight);
 }
 
-function mousePressed(){
+function mouseClicked(){
   //when the mouse is clicked, flip the value linesd up with
   //the mouse pposition;
-  flip(col, row);
-  // flip the four neighbour;
-  flip(col + 1, row);
-  flip(col - 1, row);
-  flip(col, row - 1);
-  flip(col, row + 1);
+  if(keyIsPressed && keyCode === SHIFT){
+    flip(col,row)
+  }
+  else{
+    flip(col, row);
+    // flip the four neighbour;
+    flip(col + 1, row);
+    flip(col - 1, row);
+    flip(col, row - 1);
+    flip(col, row + 1);
+  }
+ 
 }
 
 function renderGrid(){

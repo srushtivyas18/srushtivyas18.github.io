@@ -181,7 +181,8 @@ class MovableMarker{
 
 class StarMaker extends MovableMarker{
   constructor(x,y){
-    super(x,y)
+    super(x,y);
+    
   }
   move(){
     super.move()
