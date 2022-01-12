@@ -66,6 +66,15 @@ function draw() {
   background(220);
   renderGrid();
   print(col, row);
-  // //test  animation
+   //test  animation
   // grid[int(random(4))][int(random(5))] = int(random(256));
+  winMessage();
+}
+
+function winMessage(){
+  fill(0,255,0);
+ if(rect === 0 || rect === 255){
+   text('something', 20,70);
+ }
+  
 }
