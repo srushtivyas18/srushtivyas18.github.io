@@ -30,15 +30,78 @@ function mouseClicked(){
   //the mouse pposition;
   if(keyIsPressed && keyCode === SHIFT){
     flip(col,row)
+    
   }
+  //if()
   else{
     flip(col, row);
+    if(row > 0){
+      flip(col, row -1);
+    }
+    if(row < NUM_ROWS - 1){
+      flip(col, row +1);
+    }
+
+    if(row < 4){
+      flip(col + 1, row);
+    }
+    if(row < NUM_ROWS + 1){
+      flip(col , row -1);
+    }
+
+
+
+
+
+    //   if(col === 0){
+    //     flip(col + 1,row);
+    //     flip(col,row+1);
+    //     flip(col,row);
+    //   }
+    //   else if(row === 0){
+    //     if(col === 4){
+    //       flip(col - 1, row);
+    //       flip(col , row + 1);
+    //       flip(col,row);
+    //     }
+    // }
+
+    
+
+    //   if(row === 3){
+    //     if(col === 0 ){
+    //       flip(col + 1, row);
+          
+    //       flip(col, row);
+    //     }
+    //     else if(row === 3){
+    //       if(col === 4){
+    //         flip(col -1, row);
+    //         flip(col, row + 1);
+    //         flip(col, row);
+    //       }
+    //     }
+    //   }
+
+      
+    
+
+    
     // flip the four neighbour;
-    flip(col + 1, row);
-    flip(col - 1, row);
-    flip(col, row - 1);
-    flip(col, row + 1);
+    // flip(col + 1, row);
+    // flip(col - 1, row);
+    // flip(col, row - 1);
+    // flip(col, row + 1);
+  
+  
+
+  
+    
+
+       
+    
   }
+  
  
 }
 
@@ -57,7 +120,8 @@ function renderGrid(){
 function setup() {
   rectWidth = 100;
   rectHeight = 100;
-  createCanvas(NUM_COLS * rectWidth, NUM_ROWS * rectHeight);
+  createCanvas(NUM_COLS * rectWidth + 120, NUM_ROWS * rectHeight + 70);
+  
 }
 
 function draw() {
@@ -65,16 +129,22 @@ function draw() {
   col = getCurrentX();
   background(220);
   renderGrid();
+  winMessage();
   print(col, row);
    //test  animation
   // grid[int(random(4))][int(random(5))] = int(random(256));
-  winMessage();
+ 
 }
 
 function winMessage(){
   fill(0,255,0);
- if(rect === 0 || rect === 255){
-   text('something', 20,70);
+ if(NUM_ROWS === 255 || NUM_COLS === 255){
+  text('something',500,450);
+  return true;
+ }
+ else{
+
+   return false;
  }
   
 }
