@@ -10,7 +10,9 @@ let grid = [ [0, 255, 0, 0, 255],
 
 const NUM_ROWS = 4;
 const NUM_COLS = 5; 
-let rectWidth, rectHeight, col, row;   
+let rectWidth, rectHeight, col, row, readMessage;   
+
+let winMsg = ["YOU WIN!!!"];
 
 function flip(col, row){
   if(grid[row][col] === 0) grid[row][col] = 255;
@@ -28,6 +30,7 @@ function getCurrentY(){
 function mouseClicked(){
   //when the mouse is clicked, flip the value linesd up with
   //the mouse pposition;
+  if(mouseOver)
   if(keyIsPressed && keyCode === SHIFT){
     flip(col,row)
     
@@ -37,69 +40,16 @@ function mouseClicked(){
     flip(col, row);
     if(row > 0){
       flip(col, row -1);
-    }
+     }
     if(row < NUM_ROWS - 1){
       flip(col, row +1);
     }
-
     if(row < 4){
       flip(col + 1, row);
     }
-    if(row < NUM_ROWS + 1){
-      flip(col , row -1);
+    if(col < NUM_ROWS + 1){
+      flip(col -1,row);
     }
-
-
-
-
-
-    //   if(col === 0){
-    //     flip(col + 1,row);
-    //     flip(col,row+1);
-    //     flip(col,row);
-    //   }
-    //   else if(row === 0){
-    //     if(col === 4){
-    //       flip(col - 1, row);
-    //       flip(col , row + 1);
-    //       flip(col,row);
-    //     }
-    // }
-
-    
-
-    //   if(row === 3){
-    //     if(col === 0 ){
-    //       flip(col + 1, row);
-          
-    //       flip(col, row);
-    //     }
-    //     else if(row === 3){
-    //       if(col === 4){
-    //         flip(col -1, row);
-    //         flip(col, row + 1);
-    //         flip(col, row);
-    //       }
-    //     }
-    //   }
-
-      
-    
-
-    
-    // flip the four neighbour;
-    // flip(col + 1, row);
-    // flip(col - 1, row);
-    // flip(col, row - 1);
-    // flip(col, row + 1);
-  
-  
-
-  
-    
-
-       
-    
   }
   
  
@@ -130,6 +80,7 @@ function draw() {
   background(220);
   renderGrid();
   winMessage();
+  winner();
   print(col, row);
    //test  animation
   // grid[int(random(4))][int(random(5))] = int(random(256));
@@ -137,14 +88,28 @@ function draw() {
 }
 
 function winMessage(){
-  fill(0,255,0);
- if(NUM_ROWS === 255 || NUM_COLS === 255){
-  text('something',500,450);
+  let firstBlock = grid[0][0];
+  for (let x = 0; x < NUM_COLS; x++ ){
+    for (let y = 0; y < NUM_ROWS; y++){
+      if(grid[y][x] !== firstBlock){
+        readMessage = (winMsg);
+        return false;
+      }
+    }
+  }
   return true;
- }
- else{
+}
 
-   return false;
- }
-  
+function winner(){
+  fill(44, 165, 245);
+  textSize(60);
+  textAlign(CENTER,CENTER);
+  textFont("fantasy");
+  if(winMessage() === true){
+    text(readMessage,0,0,NUM_COLS*rectWidth-10,400);
+  }
+}
+
+function colorBoard(){
+ 
 }
