@@ -30,7 +30,7 @@ function getCurrentY(){
 function mouseClicked(){
   //when the mouse is clicked, flip the value linesd up with
   //the mouse pposition;
-  if(mouseOver)
+  //if(mouseOver)
   if(keyIsPressed && keyCode === SHIFT){
     flip(col,row)
     
