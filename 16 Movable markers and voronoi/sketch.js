@@ -111,7 +111,7 @@ class MovableMarker{
     this.offX = 0;
     this.offY = 0;    //used for when dragging not from the center
     this.baseColor = color(255,0,0);
-    this.hoverColor = color(200,0,0);
+    this.hoverColor = color(252, 186, 3);
     this.beingDragged = false;
     this.radius = 7;
     this.diameter = this.radius * 2;
@@ -182,6 +182,10 @@ class MovableMarker{
 class StarMaker extends MovableMarker{
   constructor(x,y){
     super(x,y);
+    this.baseColor = color(5, 35, 232);
+    this.hoverColor = color(33, 220, 237);
+    this.radius = 7;
+    this.diameter = this.radius * 2;
     
   }
   move(){
@@ -201,7 +205,14 @@ class StarMaker extends MovableMarker{
   }
 
   mouseIsOver(){
-    super.mouseIsOver();
+    //return true if the mouse is hoveirng over the shape
+    let d = dist(mouseX, mouseY, this.x, this.y);
+    if(d <= this.radius){
+      return true; // mouse is hovering over this object
+    }
+    else{
+      return false;
+    }
   }
 
   regionAdd(){
