@@ -42,6 +42,11 @@ class Mover{
     this.acceleration = createVector(0,0.2);
     this.c = color(random(200), random(200), random(200));
     this.alive = true;
+    this.yVal = 0;
+    this.vel = 0;
+    this.mass = 100;
+
+    this.accel = mass * 0.1;
   }
 
   move(){
@@ -58,6 +63,8 @@ class Mover{
     fill(this.c);
     push();
     translate(this.position.x, this.position.y);
+    velocity += this.accel;
+    yVal += this.vel;
     circle(0,0,this.size);
     pop();
 
