@@ -70,7 +70,7 @@ function renderGrid(){
 function setup() {
   rectWidth = 100;
   rectHeight = 100;
-  createCanvas(NUM_COLS * rectWidth + 120, NUM_ROWS * rectHeight + 70);
+  createCanvas(NUM_COLS * rectWidth , NUM_ROWS * rectHeight);
   
 }
 
