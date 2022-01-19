@@ -68,7 +68,7 @@ function setFill(x,y){
     markers[minIndex].regionAdd();
   }
   else{
-    fill(200);
+    fill(200,100);
   }
 }
 
@@ -184,8 +184,8 @@ class StarMaker extends MovableMarker{
     super(x,y);
     this.baseColor = color(5, 35, 232);
     this.hoverColor = color(33, 220, 237);
-    this.radius = 7;
-    this.diameter = this.radius * 2;
+    //this.radius = 7;
+   //  this.diameter = this.radius * 2;
     
   }
   move(){
