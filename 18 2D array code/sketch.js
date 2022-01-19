@@ -10,7 +10,8 @@ let grid = [ [0, 255, 0, 0, 255],
 
 const NUM_ROWS = 4;
 const NUM_COLS = 5; 
-let rectWidth, rectHeight, col, row, readMessage;   
+let rectWidth, rectHeight, col, row, readMessage;  
+let hoverColor = (255,200,110); 
 
 let winMsg = ["YOU WIN!!!"];
 
@@ -70,7 +71,10 @@ function renderGrid(){
 function setup() {
   rectWidth = 100;
   rectHeight = 100;
+  //colorBoard();
   createCanvas(NUM_COLS * rectWidth , NUM_ROWS * rectHeight);
+  
+  
   
 }
 
@@ -111,5 +115,9 @@ function winner(){
 }
 
 function colorBoard(){
- 
+ let d = dist(mous)
+}
+
+function mouseIsOver(){
+
 }
