@@ -71,7 +71,7 @@ function renderGrid(){
 function setup() {
   rectWidth = 100;
   rectHeight = 100;
-  //colorBoard();
+  colorBoard();
   createCanvas(NUM_COLS * rectWidth , NUM_ROWS * rectHeight);
   
   
@@ -114,10 +114,21 @@ function winner(){
   }
 }
 
-function colorBoard(){
- let d = dist(mous)
-}
-
 function mouseIsOver(){
-
+  //let d = dist(mouseX, mouseY, col, row);
+  if(d <= grid[row][col]){
+    return true;
+  }
+  else{
+    return false;
+  }
 }
+
+function colorBoard(){
+  if(mouseIsOver()){
+    fill(this.hoverColor);
+  }
+  else{
+    fill(fillValue);
+  }
+ }
