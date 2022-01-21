@@ -5,6 +5,7 @@ class Game {
         this.cannonAngle = 0;
         this.cannonPower = 10;
         this.shots = [];
+        this.targets = [];
         this.targetX = random(70,600);
         this.targetY = random(80,500);
         this.explosionImage = 6;
@@ -29,15 +30,8 @@ class Game {
             b.checkTargetCollision();
             //check the target collision
 
+            
             if(b.getAlive() === false){
-                if(b.getCollisionType() === 2){
-                    this.shots.splice(i,1);
-                    //this.displayExplosionShots();
-                    i++;
-                }
-            }
-
-           else if(b.getAlive() === false){
                 if(b.getCollisionType() === 1){
                     //groundCollison case
                     //create spawn a bunch of smoke particles
@@ -47,6 +41,21 @@ class Game {
                 }
             }
         }
+
+        for(let i = 0; i < this.targets.length; i++){
+            let a = this.targets[i];
+            a.move();
+            a.display();
+            a.checkTargetCollision();
+            if(a.getAlive() === false){
+                if(a.getCollisionType === 2){
+                    this.targets.splice(i,1);
+                    i--;
+                }
+            }
+        }
+
+
        
 
         //process and draw every particle
