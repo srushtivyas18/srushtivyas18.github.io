@@ -1,8 +1,14 @@
 class Game {
-    constructor() {
+    constructor(x,y) {
+        this.x = x;
+        this.y = y;
         this.cannonAngle = 0;
         this.cannonPower = 10;
         this.shots = [];
+        this.targetX = random(70,600);
+        this.targetY = random(80,500);
+        this.explosionImage = 6;
+        this.shotsLeft = 20;
     }
 
     play() {
@@ -19,11 +25,22 @@ class Game {
             b.move();
             b.display();
             b.checkGroundCollision();
+            b.checkTargetCollision();
             //check the target collision
+
             if(b.getAlive() === false){
+                if(b.getCollisionType() === 2){
+                    this.shots.splice(i,1);
+                    //this.displayExplosionShots();
+                    i++;
+                }
+            }
+
+           else if(b.getAlive() === false){
                 if(b.getCollisionType() === 1){
                     //groundCollison case
                     //create spawn a bunch of smoke particles
+                   
                     this.shots.splice(i,1);
                     i--;
                 }
@@ -34,9 +51,12 @@ class Game {
         //process and draw every particle
 
         // process and draw every explosion that is active
+      //  this.displayExplosionShots();
+       this.displayshotsLeft();
 
         // draw the correct image for the number of shots left and targets hit
         this.displayTarget();
+        
       
 
         //draw the cannon
@@ -48,7 +68,11 @@ class Game {
     createShot(){
         let v = createVector(this.cannonPower * cos(radians(this.cannonAngle)),
         this.cannonPower * sin(radians(this.cannonAngle) * -1));
-        this.shots.push(new Ball(v));
+        if(this.shotsLeft > 0){
+            this.shots.push(new Ball(v));
+            this.shotsLeft--;
+        }
+       
     }
 
     displayCannon() {
@@ -63,10 +87,32 @@ class Game {
         pop();
     }
 
+
     displayTarget(){
         imageMode(CENTER);
-        image(targetImage,50,50);
+        image(targetImage,this.targetX,this.targetY);
        
+    }
+
+    displayExplosionShots(){
+        for(let i = 0; i < this.explosionImage; i++){
+            imageMode(CENTER);
+            push();
+            translate(50,48)
+            image(explosionImages[this.explosionImage],displayTarget(),displayTarget());
+            pop();
+
+        }
+    }
+
+    displayshotsLeft(){
+        for(let i = 0; i < this.shotsLeft; i++){
+            imageMode(CENTER);
+            push();
+            translate(202,42);
+            image(shotsRemainingImages[this.shotsLeft],325,20);
+            pop();
+        }
     }
 
     displayPower(){

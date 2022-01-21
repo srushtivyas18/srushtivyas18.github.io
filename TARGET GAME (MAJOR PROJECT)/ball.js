@@ -36,4 +36,12 @@ class Ball{
         }
     }
 
+    checkTargetCollision(){
+        if(this.pos.y < this.targetY &&  this.pos.y < 40){
+            if(this.pos.x < this.targetX && this.pos.x < 40)
+            this.alive = false ;
+            this.collisionType = 2;
+        }
+    }
+
 }
