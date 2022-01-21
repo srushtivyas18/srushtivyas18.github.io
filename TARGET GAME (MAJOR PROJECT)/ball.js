@@ -1,9 +1,14 @@
 class Ball{
-    constructor(v_){
+    constructor(v_,radius){
         this.pos = createVector(73,525);
+        this.radius = 20;
         this.velocity = v_;
         this.gravity = createVector(0,0.2);
         this.alive = true;
+        this.targetX = random(70,600);
+        this.targetY = random(80,500);
+       // this.dia = 40;
+      
         this.collisionType = 0;  //1 → ground, 2 → target
     }                           // 0 → no collision
     
@@ -37,9 +42,8 @@ class Ball{
     }
 
     checkTargetCollision(){
-        if(this.pos.y < this.targetY &&  this.pos.y < 40){
-            if(this.pos.x < this.targetX && this.pos.x < 40)
-            this.alive = false ;
+        if(dist(this.pos.x,this.pos.y,this.targetX,this.targetY) < radius){
+            this.alive = false;
             this.collisionType = 2;
         }
     }

@@ -9,6 +9,7 @@ class Game {
         this.targetY = random(80,500);
         this.explosionImage = 6;
         this.shotsLeft = 20;
+        this.targetLeft = 20;
     }
 
     play() {
@@ -51,8 +52,9 @@ class Game {
         //process and draw every particle
 
         // process and draw every explosion that is active
-      //  this.displayExplosionShots();
+       //this.displayExplosionShots();
        this.displayshotsLeft();
+       this.displayTargetLeft();
 
         // draw the correct image for the number of shots left and targets hit
         this.displayTarget();
@@ -71,6 +73,8 @@ class Game {
         if(this.shotsLeft > 0){
             this.shots.push(new Ball(v));
             this.shotsLeft--;
+            this.targetLeft--;
+         
         }
        
     }
@@ -94,16 +98,16 @@ class Game {
        
     }
 
-    displayExplosionShots(){
-        for(let i = 0; i < this.explosionImage; i++){
-            imageMode(CENTER);
-            push();
-            translate(50,48)
-            image(explosionImages[this.explosionImage],displayTarget(),displayTarget());
-            pop();
+    // displayExplosionShots(){
+    //     for(let i = 0; i < this.explosionImage; i++){
+    //         imageMode(CENTER);
+    //         push();
+    //         translate(50,48)
+    //         image(explosionImages[this.explosionImage],500,202);
+    //         pop();
 
-        }
-    }
+    //     }
+    // }
 
     displayshotsLeft(){
         for(let i = 0; i < this.shotsLeft; i++){
@@ -111,6 +115,16 @@ class Game {
             push();
             translate(202,42);
             image(shotsRemainingImages[this.shotsLeft],325,20);
+            pop();
+        }
+    }
+
+    displayTargetLeft(){
+        for(let i = 0; i < this.targetLeft; i++){
+            imageMode(CENTER);
+            push();
+            translate(202,42);
+            image(targetsHitImages[this.targetLeft],700,20);
             pop();
         }
     }
