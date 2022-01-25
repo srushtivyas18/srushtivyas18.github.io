@@ -41,18 +41,14 @@ class Ball{
         }
     }
 
-    checkTargetCollision(){
-        if(this.pos.x < this.radius && this.pos.x > 40){
-            this.alive = false;
-            this.collisionType = 2;
-        }
+    checkTargetCollision(tX,tY){
+        print(dist(this.pos.x, this.pos.y, tX, tY));
+       if(dist(this.pos.x, this.pos.y, tX, tY) < 40){
+           print("hit");
+           this.alive = false;
+           this.collisionType = 2;
+       }  
 
-        if(this.pos.y < this.radius && this.pos.y > 40){
-            this.alive = false;
-            this.collisionType = 2;
-        }
-            
-        
     }
 
-}
+} 

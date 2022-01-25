@@ -5,12 +5,12 @@ class Game {
         this.cannonAngle = 0;
         this.cannonPower = 10;
         this.shots = [];
-        this.targets = [];
+       // this.targets = [];
         this.targetX = random(70,600);
         this.targetY = random(80,500);
-        this.explosionImage = 6;
+        this.explosionImage = 7;
         this.shotsLeft = 20;
-        this.targetLeft = 20;
+        this.targetHit = 0;
     }
 
     play() {
@@ -27,7 +27,7 @@ class Game {
             b.move();
             b.display();
             b.checkGroundCollision();
-            //b.checkTargetCollision();
+            b.checkTargetCollision(this.targetX, this.targetY);
             //check the target collision
 
             
@@ -39,31 +39,30 @@ class Game {
                     this.shots.splice(i,1);
                     i--;
                 }
+             else if (b.getCollisionType() === 2){
+                 this.targetHit++;
+                 this.targetX = random(70,600);
+                 this.targetY = random(80,500);
+                 this.shots.splice(i,1);
+                 i--;
+                 
+
+                 //this.displayTarget();
+                 //this.displayExplosionShots();
+             }
             }
         }
 
-        for(let i = 0; i < this.targets.length; i++){
-            let a = this.targets[i];
-            a.move();
-            a.display();
-            a.checkTargetCollision();
-            if(a.getAlive() === false){
-                if(a.getCollisionType === 2){
-                    this.targets.splice(i,1);
-                    i--;
-                }
-            }
-        }
-
+        
 
        
 
         //process and draw every particle
 
         // process and draw every explosion that is active
-       //this.displayExplosionShots();
+       
        this.displayshotsLeft();
-       this.displayTargetLeft();
+       
 
         // draw the correct image for the number of shots left and targets hit
         this.displayTarget();
@@ -111,7 +110,7 @@ class Game {
     //         imageMode(CENTER);
     //         push();
     //         translate(50,48)
-    //         image(explosionImages[this.explosionImage],500,202);
+    //         image(explosionImages[this.explosionImage],this.targetX,this.targetY);
     //         pop();
 
     //     }
@@ -127,12 +126,12 @@ class Game {
         }
     }
 
-    displayTargetLeft(){
-        for(let i = 0; i < this.targetLeft; i++){
+    displayTargetHit(){
+        for(let i = 0; i < 21; i++){
             imageMode(CENTER);
             push();
             translate(202,42);
-            image(targetsHitImages[this.targetLeft],700,20);
+            image(targetsHitImages[this.targetHit],700,20);
             pop(); 
         }
     } 
