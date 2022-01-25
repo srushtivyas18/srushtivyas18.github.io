@@ -42,12 +42,12 @@ class Ball{
     }
 
     checkTargetCollision(){
-        if(this.pos.x < this.radius || this.pos.x > displayTarget()){
+        if(this.pos.x < this.radius && this.pos.x > 40){
             this.alive = false;
             this.collisionType = 2;
         }
 
-        if(this.pos.y < this.radius || this.pos.y > displayTarget()){
+        if(this.pos.y < this.radius && this.pos.y > 40){
             this.alive = false;
             this.collisionType = 2;
         }

@@ -16,7 +16,7 @@ function setup() {
   createCanvas(1060, 600);
   currentGame = new Game();
 }
-
+  
 function draw() {
  // background(220);
   currentGame.play();

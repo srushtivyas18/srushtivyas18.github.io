@@ -27,7 +27,7 @@ class Game {
             b.move();
             b.display();
             b.checkGroundCollision();
-            b.checkTargetCollision();
+            //b.checkTargetCollision();
             //check the target collision
 
             
@@ -82,10 +82,9 @@ class Game {
         if(this.shotsLeft > 0){
             this.shots.push(new Ball(v));
             this.shotsLeft--;
-            this.targetLeft--;
-         
+            //this.targetLeft--;
         }
-       
+            
     }
 
     displayCannon() {
@@ -134,9 +133,9 @@ class Game {
             push();
             translate(202,42);
             image(targetsHitImages[this.targetLeft],700,20);
-            pop();
+            pop(); 
         }
-    }
+    } 
 
     displayPower(){
         rectMode(CORNER);
