@@ -5,8 +5,6 @@ class Ball{
         this.velocity = v_;
         this.gravity = createVector(0,0.2);
         this.alive = true;
-        //this.targetX = random(70,600);
-        //this.targetY = random(80,500);
        // this.dia = 40;
       
         this.collisionType = 0;  //1 → ground, 2 → target
@@ -42,9 +40,9 @@ class Ball{
     }
 
     checkTargetCollision(tX,tY){
-        print(dist(this.pos.x, this.pos.y, tX, tY));
+        //print(dist(this.pos.x, this.pos.y, tX, tY));
        if(dist(this.pos.x, this.pos.y, tX, tY) < 40){
-           print("hit");
+          // print("hit");
            this.alive = false;
            this.collisionType = 2;
        }  
