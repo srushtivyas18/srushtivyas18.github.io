@@ -7,7 +7,7 @@ class Game {
         this.shots = [];
         this.targetX = random(70, 1000);
         this.targetY = random(100, 500);
-      
+        this.explosions = [];
         this.shotsLeft = 20;
         this.targetHit = 0;
     }
@@ -40,17 +40,18 @@ class Game {
                 }
                 else if (b.getCollisionType() === 2) {
                     this.targetHit++;
-                   
-                    this.displayExplosionShots();
+
+                   // this.displayExplosionShots();
+                   this.explosions.push(new Explosion(this.targetX, this.targetY));
                     this.targetX = random(70, 600);
                     this.targetY = random(80, 500);
                    
                     this.shots.splice(i, 1);
                     i--;
 
-                    
-                 
-                  
+
+
+
                 }
             }
         }
@@ -61,12 +62,23 @@ class Game {
 
         //process and draw every particle
 
+        for (let i = 0; i < this.explosions.length; i++) {
+            let e = this.explosions[i];
+            e.display();
+            if (e.active === false) {
+                this.explosions.splice(i, 1);
+            }
+        }
+
+
+
+
         // process and draw every explosion that is active
         this.displayTarget();
-     
-        
+
+
         this.displayshotsLeft();
-       
+
 
         // draw the correct image for the number of shots left and targets hit
         this.displayTargetHit();
@@ -86,7 +98,7 @@ class Game {
         if (this.shotsLeft > 0) {
             this.shots.push(new Ball(v));
             this.shotsLeft--;
-            
+
         }
 
     }
@@ -110,10 +122,11 @@ class Game {
 
     }
 
-    displayExplosionShots(){
+    displayExplosionShots() {
         this.targetX = random(70, 1000);
         this.targetY = random(100, 500);
-        this.explosions.push(new Explosion(this.targetX, this.targetY));
+        
+        
     }
 
     displayshotsLeft() {

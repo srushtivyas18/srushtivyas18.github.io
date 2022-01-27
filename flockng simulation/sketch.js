@@ -9,7 +9,7 @@ function setup() {
   allignSlider = createSlider(0,5, 1, 0.1);
   cohesionSlider = createSlider(0,5, 1, 0.1);
   seperationSlider = createSlider(0,5, 1, 0.1);
-  for(let i = 0; i < 100; i++){
+  for(let i = 0; i < 10; i++){
     flock.push(new Boid());
   }
  
@@ -34,6 +34,9 @@ class Boid{
     this.acc = createVector();
     this.maxForce = 1;
     this.maxSpeed = 4;
+    this.fishImage = [];
+    this.fishImage.push(loadImage("assets/fish2.png"));
+    this.fishImage.push(loadImage("assets/fishR.png"));
   }
 
   edges(){
@@ -150,8 +153,8 @@ class Boid{
   }
 
   show(){
-    strokeWeight(8);
-    stroke(255);
-    point(this.pos.x, this.pos.y);
+    //strokeWeight(8);
+    //stroke(255);
+    image(this.fishImage,this.pos.x, this.pos.y,100,100);
   }
 }
