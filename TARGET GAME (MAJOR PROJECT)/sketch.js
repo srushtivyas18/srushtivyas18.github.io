@@ -24,22 +24,22 @@ function draw() {
 }
 
 function keyPressed(){
-  if(key === " "){
+  if(key === " "){                          // when you hit space the cannonball shooter will hit a cannonball
     currentGame.createShot();
   }
 }
 
 function quickInput(){
 if(keyIsDown(LEFT_ARROW)){
-  currentGame.changeAngle(true);
+  currentGame.changeAngle(true);    //with this you will be able to change like how much power you want.
 }
 if(keyIsDown(RIGHT_ARROW)){
-  currentGame.changeAngle(false);
+  currentGame.changeAngle(false);      // same as this one....you willl be able to change the power from this.
 }
-if(keyIsDown(UP_ARROW)){
+if(keyIsDown(UP_ARROW)){             // the upper arrow will help to change the amgle of the cannonball shooter
   currentGame.changePower(true);
 }
-if(keyIsDown(DOWN_ARROW)){
+if(keyIsDown(DOWN_ARROW)){            // same with this....it will help to change the angle.
   currentGame.changePower(false);
 }
 

@@ -1,25 +1,28 @@
-// flocking simulation
-// for aquarium project
+//Srushti Vyas
+// Jan 20, 2022
+// flocking simulation for aquarium project
+// There will be the school of fish which will change its position when it'll
+// meet some other fish.
 
 const flock = [];
 
-let allignSlider, cohesionSlider, seperationSlider;
+let allignSlider, cohesionSlider, seperationSlider;    // these global varibale will help to make a slider 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  allignSlider = createSlider(0,5, 1, 0.1);
-  cohesionSlider = createSlider(0,5, 1, 0.1);
+  allignSlider = createSlider(0,5, 1, 0.1);       // This is where we will be able to change the sliding and 
+  cohesionSlider = createSlider(0,5, 1, 0.1);     // add the allignment, cohesion or the seperation to the fish
   seperationSlider = createSlider(0,5, 1, 0.1);
   for(let i = 0; i < 10; i++){
-    flock.push(new Boid());
+    flock.push(new Boid());              // this will make sure how much number of fish there should be
   }
  
 }
 
 function draw() {
   background(50);
-  for( let boid of flock){
-    boid.edges();
-    boid.flock(flock);
+  for( let boid of flock){                  
+    boid.edges();                 //will make suree of the edges.
+    boid.flock(flock);               // all the functions from the class will be implemented fromm here.
     boid.update();
     boid.show();
   }
@@ -28,13 +31,13 @@ function draw() {
 
 class Boid{
   constructor(){
-    this.pos = createVector(random(width), random(height));
+    this.pos = createVector(random(width), random(height));   // created a vector for random width and height of the fish
     this.vel = p5.Vector.random2D();
     this.vel.setMag(random(2,4));
     this.acc = createVector();
-    this.maxForce = 1;
-    this.maxSpeed = 4;
-    this.fishImage = [];
+    this.maxForce = 0.25;
+    this.maxSpeed = 4;    // controls the speed of the fish 
+    this.fishImage = [];    // made an array to hold two fish
     this.fishImage.push(loadImage("assets/fish2.png"));
     this.fishImage.push(loadImage("assets/fishR.png"));
   }
@@ -153,8 +156,11 @@ class Boid{
   }
 
   show(){
-    //strokeWeight(8);
-    //stroke(255);
-    image(this.fishImage,this.pos.x, this.pos.y,100,100);
+    if(this.vel.x < 0){
+      image(this.fishImage[0],this.pos.x,this.pos.y,100,100);     // this will let fish change its side when it will come incontact with other fish
+    }
+    if(this.vel.x > 0){
+      image(this.fishImage[1],this.pos.x,this.pos.y,100,100);
+    }
   }
 }
