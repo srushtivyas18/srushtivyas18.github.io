@@ -70,6 +70,7 @@ class Game {
             }
         }
 
+       
 
 
 
@@ -88,6 +89,12 @@ class Game {
         //draw the cannon
         this.displayCannon();
         this.displayPower();
+        // if(this.shotsLeft < 1 && this.shots.length === 0){
+        //     imageMode(CORNER);
+        //     image(backImageReport,0,0)
+        // }      
+        
+        
 
 
     }
@@ -98,8 +105,9 @@ class Game {
         if (this.shotsLeft > 0) {
             this.shots.push(new Ball(v));
             this.shotsLeft--;
-
+            
         }
+        
 
     }
 
@@ -122,12 +130,12 @@ class Game {
 
     }
 
-    displayExplosionShots() {
-        this.targetX = random(70, 1000);
-        this.targetY = random(100, 500);
+    // displayExplosionShots() {
+    //     this.targetX = random(70, 1000);
+    //     this.targetY = random(100, 500);
         
         
-    }
+    // }
 
     displayshotsLeft() {
         for (let i = 0; i < this.shotsLeft; i++) {
@@ -137,6 +145,7 @@ class Game {
             image(shotsRemainingImages[this.shotsLeft], 325, 20);
             pop();
         }
+       
     }
 
     displayTargetHit() {
@@ -153,18 +162,21 @@ class Game {
         rectMode(CORNER);
         noStroke();
         fill(3, 252, 186);
-        rect(0, 40, this.cannonPower * 15 - 50, 45);
+        rect(0, 40, this.cannonPower * 15 - 50, 45);  
+        
+       
     }
 
     changePower(increase) {
         if (increase) {
-            if (this.cannonPower < 20) this.cannonPower += 0.15;
+            if (this.cannonPower < 20) this.cannonPower += 0.15; // This function will determine how much power does a ball should have
         }
-
+                                                                
         else {
             if (this.cannonPower > 5) this.cannonPower -= 0.15;
 
         }
+        
 
     }
 
@@ -172,8 +184,8 @@ class Game {
         //if increase is true - getting larger Angle
         if (increase) {
             if (this.cannonAngle < 90) this.cannonAngle += 2;
-        }
-
+        }                                                         // This whole function will determine how much the cannonball shooter should be upto
+                                                            
         else {
             if (this.cannonAngle > 0) this.cannonAngle -= 2;
 
@@ -181,5 +193,5 @@ class Game {
 
     }
 
-
+    
 }
