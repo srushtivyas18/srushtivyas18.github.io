@@ -33,9 +33,9 @@ class Boid{
   constructor(){
     this.pos = createVector(random(width), random(height));   // created a vector for random width and height of the fish
     this.vel = p5.Vector.random2D();
-    this.vel.setMag(random(2,4));    // how they should move
+    this.vel.setMag(random(2,4));
     this.acc = createVector();
-    this.maxForce = 0.25;  // this will let balace the force between two fishes....just like magnetic force.
+    this.maxForce = 0.25;
     this.maxSpeed = 4;    // controls the speed of the fish 
     this.fishImage = [];    // made an array to hold two fish
     this.fishImage.push(loadImage("assets/fish2.png"));
@@ -47,7 +47,7 @@ class Boid{
       this.pos.x = 0;
     }
     else if(this.pos.x < 0){
-      this.pos.x = width;         // determine the edges
+      this.pos.x = width;
     }
     if(this.pos.y > height){
       this.pos.y = 0;
@@ -64,9 +64,9 @@ class Boid{
     let steering = createVector();
     let total = 0;
     for(let other of boids){
-      let d =(dist(this.pos.x, this.pos.y, other.pos.x, other.pos.y));  // calculating how much it should be
-      if(other !== this && d < perceptionR){            // let the alligment to be 
-        steering.add(other.vel);  // could be adjust with the slider.
+      let d =(dist(this.pos.x, this.pos.y, other.pos.x, other.pos.y));
+      if(other !== this && d < perceptionR){
+        steering.add(other.vel);
         total++;
       }
       
@@ -74,7 +74,7 @@ class Boid{
     if(total > 0){
       steering.div(total);
       steering.setMag(this.maxSpeed);
-      steering.sub(this.vel);            // giving the vales to them by the class variables
+      steering.sub(this.vel);
       steering.limit(this.maxForce);
      
 
@@ -90,13 +90,13 @@ class Boid{
       let d =(dist(this.pos.x, this.pos.y, other.pos.x, other.pos.y));
       if(other !== this && d < perceptionR){
         steering.add(other.pos);
-        total++;  
-      }                             // same for this one the only differrence is the perception rate....vary for all three
+        total++;
+      }
       
     }
     if(total > 0){
       steering.div(total);
-      steering.sub(this.pos);   // adding sub.pos to get accurate width or height
+      steering.sub(this.pos);
       steering.setMag(this.maxSpeed);
       steering.sub(this.vel);
       steering.limit(this.maxForce);
@@ -113,7 +113,7 @@ class Boid{
     for(let other of boids){
       let d =(dist(this.pos.x, this.pos.y, other.pos.x, other.pos.y));
       if(other !== this && d < perceptionR){
-        let diff = p5.Vector.sub(this.pos,other.pos);  // same for the seperation
+        let diff = p5.Vector.sub(this.pos,other.pos);
         diff.div(d);
         steering.add(diff);
         total++;
@@ -138,7 +138,7 @@ class Boid{
     let seperation = this.seperation(boids);
 
     seperation.mult(seperationSlider.value());
-    cohesion.mult(cohesionSlider.value());            // this flock() will let allignment,cohesion and seperation to work.
+    cohesion.mult(cohesionSlider.value());
     allignment.mult(allignSlider.value());
 
 
@@ -164,5 +164,3 @@ class Boid{
     }
   }
 }
-
-//THAMK YOU MR SCOTT

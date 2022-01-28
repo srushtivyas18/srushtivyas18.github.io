@@ -69,7 +69,23 @@ class Game {
                 this.explosions.splice(i, 1);
             }
         }
-
+        if(this.shotsLeft < 1 && this.shots.length === 0){
+            imageMode(CORNER);
+            image(backImageReport,0,0);
+            fill(255);
+            textSize(50);
+            text("ACCURACY " +  this.targetHit + " / 20", 315,350)
+            if(this.targetHit < 13){
+                text("Better Luck Next Time!!!!", 315, 200)
+                text("Rank: B ", 355, 275)
+            }
+            else if(this.targetHit > 13){
+                text("Winner Winner!!!", 325, 200)
+                text("Rank: A ", 355, 275)
+            }
+        }  
+        
+       
        
 
 
@@ -89,10 +105,7 @@ class Game {
         //draw the cannon
         this.displayCannon();
         this.displayPower();
-        // if(this.shotsLeft < 1 && this.shots.length === 0){
-        //     imageMode(CORNER);
-        //     image(backImageReport,0,0)
-        // }      
+         
         
         
 
